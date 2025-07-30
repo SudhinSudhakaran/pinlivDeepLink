@@ -1,5 +1,5 @@
-/.well-known/assetlinks.json
+/.well-known/apple-app-site-association
   Content-Type: application/json
 
-/apple-app-site-association
+/.well-known/assetlinks.json
   Content-Type: application/json
