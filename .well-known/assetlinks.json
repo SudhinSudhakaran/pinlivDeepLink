@@ -1,0 +1,25 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.pinliv",
+    "sha256_cert_fingerprints":
+    ["B7:36:09:46:B3:E9:40:FB:A9:BC:59:25:BB:D7:50:8A:13:31:E7:ED:26:78:DB:AC:B3:C8:4C:4E:BC:A7:B9:73"]
+  }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "web",
+    "site": "https://www.pinliv.com"
+  }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.pinliv",
+    "sha256_cert_fingerprints":
+    ["B7:36:09:46:B3:E9:40:FB:A9:BC:59:25:BB:D7:50:8A:13:31:E7:ED:26:78:DB:AC:B3:C8:4C:4E:BC:A7:B9:73"]
+  }
+}]
