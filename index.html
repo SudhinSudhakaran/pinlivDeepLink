@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Open PinLiv App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+      const androidDeepLink = "pinliv://home";
+      const iosDeepLink = "pinliv://home";
+
+      const androidAppStoreLink =
+        "https://play.google.com/store/apps/details?id=com.pinliv";
+      const iosAppStoreLink = "https://apps.apple.com/app/6670775545"; // Replace with your real App Store ID
+
+      function openApp() {
+        const now = Date.now();
+        const timeout = 1500;
+
+        // Try opening the app
+        window.location = isAndroid ? androidDeepLink : iosDeepLink;
+
+        // If not installed, go to Play Store / App Store after delay
+        setTimeout(() => {
+          const elapsed = Date.now() - now;
+          if (elapsed < timeout + 200) {
+            window.location = isAndroid ? androidAppStoreLink : iosAppStoreLink;
+          }
+        }, timeout);
+      }
+
+      window.onload = openApp;
+    </script>
+  </head>
+  <body>
+    <h2>Opening PinLiv App...</h2>
+  </body>
+</html>
