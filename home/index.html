@@ -8,9 +8,9 @@
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const isAndroid = /android/i.test(userAgent);
       const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-      const androidDeepLink = "pinliv://home";
-      const iosDeepLink = "pinliv://home";
+      const path = window.location.pathname; // e.g. /PushNotificationScreen/note-data
+      const androidDeepLink = "pinliv://" + path;
+      const iosDeepLink = "pinliv://" + path;
 
       const androidAppStoreLink =
         "https://play.google.com/store/apps/details?id=com.pinliv";
