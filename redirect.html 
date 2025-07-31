@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Opening app...</title>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const note = params.get("note");
+      const noteContent = params.get("noteContent");
+      const title = params.get("title");
+      const user = params.get("user");
+
+      const encoded = `note=${note}&noteContent=${noteContent}&title=${title}&user=${user}`;
+      const deepLink = `pinliv://PushNotificationScreen?${encoded}`;
+
+      window.location.href = deepLink;
+
+      setTimeout(() => {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.pinliv";
+      }, 2000);
+    </script>
+  </head>
+  <body>
+    <p>Opening app...</p>
+  </body>
+</html>
