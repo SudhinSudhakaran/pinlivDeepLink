@@ -12,6 +12,12 @@
 
       const encoded = `note=${note}&noteContent=${noteContent}&title=${title}&user=${user}`;
       const deepLink = `pinliv://PushNotificationScreen?${encoded}`;
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      const fallbackURL = isIOS
+        ? "https://apps.apple.com/app/6670775545"  // 🔁 Replace with real iOS App Store URL
+        : "https://play.google.com/store/apps/details?id=com.pinliv";
 
       window.location.href = deepLink;
 
