@@ -1,41 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <title>Open PinLiv App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script>
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isAndroid = /android/i.test(userAgent);
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-      const path = window.location.pathname; // e.g. /PushNotificationScreen/note-data
-      const androidDeepLink = "pinliv://" + path;
-      const iosDeepLink = "pinliv://" + path;
-
-      const androidAppStoreLink =
-        "https://play.google.com/store/apps/details?id=com.pinliv";
-      const iosAppStoreLink = "https://apps.apple.com/app/6670775545"; // Replace with your real App Store ID
-
-      function openApp() {
-        const now = Date.now();
-        const timeout = 1500;
-
-        // Try opening the app
-        window.location = isAndroid ? androidDeepLink : iosDeepLink;
-
-        // If not installed, go to Play Store / App Store after delay
-        setTimeout(() => {
-          const elapsed = Date.now() - now;
-          if (elapsed < timeout + 200) {
-            window.location = isAndroid ? androidAppStoreLink : iosAppStoreLink;
-          }
-        }, timeout);
+    <title>Opening app...</title>
+    <style>
+      body {
+        background-color: #effbce; /* Green background */
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
       }
 
-      window.onload = openApp;
+      img {
+        max-width: 250px;
+        margin-bottom: 10px;
+      }
+      p {
+        color: black;
+        font-size: 28px;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const note = params.get("note");
+      const noteContent = params.get("noteContent");
+      const title = params.get("title");
+      const user = params.get("user");
+
+      const encoded = `note=${note}&noteContent=${noteContent}&title=${title}&user=${user}`;
+      const deepLink = `pinliv://PushNotificationScreen?${encoded}`;
+      const isAndroid = /android/i.test(navigator.userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      const fallbackURL = isAndroid
+        ? "https://play.google.com/store/apps/details?id=com.pinliv"
+        : "https://apps.apple.com/app/6670775545"; // Replace with actual iOS App Store URL
+
+      window.location.href = deepLink;
+
+      setTimeout(() => {
+        window.location.href = fallbackURL;
+      }, 2000);
     </script>
   </head>
   <body>
-    <h2>Opening PinLiv App...</h2>
+    <img src="https://pinliv.com/assets/logo.b2bf2f65.png" alt="PinLiv Logo" />
+    <p>Redirecting to PinLiv App...</p>
   </body>
 </html>

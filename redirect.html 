@@ -3,6 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <title>Opening app...</title>
+    <style>
+      body {
+        background-color: #effbce; /* Green background */
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      img {
+        max-width: 250px;
+        margin-bottom: 10px;
+      }
+      p {
+        color: black;
+        font-size: 28px;
+        font-weight: bold;
+      }
+    </style>
     <script>
       const params = new URLSearchParams(window.location.search);
       const note = params.get("note");
@@ -12,21 +36,22 @@
 
       const encoded = `note=${note}&noteContent=${noteContent}&title=${title}&user=${user}`;
       const deepLink = `pinliv://PushNotificationScreen?${encoded}`;
-      const isAndroid = /Android/i.test(navigator.userAgent);
+      const isAndroid = /android/i.test(navigator.userAgent);
       const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      const fallbackURL = isIOS
-        ? "https://apps.apple.com/app/6670775545"  // 🔁 Replace with real iOS App Store URL
-        : "https://play.google.com/store/apps/details?id=com.pinliv";
+      const fallbackURL = isAndroid
+        ? "https://play.google.com/store/apps/details?id=com.pinliv"
+        : "https://apps.apple.com/app/6670775545"; // Replace with actual iOS App Store URL
 
       window.location.href = deepLink;
 
       setTimeout(() => {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.pinliv";
+        window.location.href = fallbackURL;
       }, 2000);
     </script>
   </head>
   <body>
-    <p>Opening app...</p>
+    <img src="https://pinliv.com/assets/logo.b2bf2f65.png" alt="PinLiv Logo" />
+    <p>Redirecting to PinLiv App...</p>
   </body>
 </html>
